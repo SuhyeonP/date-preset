@@ -1,9 +1,10 @@
 {
   "name": "date-preset",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build" : "rm -rf ./dist && tsc",
+    "prepare" : "yarn build",
     "style:check": "prettier --check . || node scripts/prettier-check-error.js",
     "style:fix": "prettier --write .",
     "lint:check": "eslint --ext .ts,.tsx . || node scripts/eslint-check-error.js",
