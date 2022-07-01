@@ -3,16 +3,31 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "log-run": "bin/cli.js"
+    "build": "tsc",
+    "style:check": "prettier --check . || node scripts/prettier-check-error.js",
+    "style:fix": "prettier --write .",
+    "lint:check": "eslint --ext .ts,.tsx . || node scripts/eslint-check-error.js",
+    "lint:fix": "eslint --fix --ext .ts,.tsx ."
   },
   "author": "",
   "license": "ISC",
   "keywords": [],
   "description": "",
   "dependencies": {
-    "commander": "^9.3.0"
+    "commander": "^9.3.0",
+    "pluralize": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/pluralize": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   }
 }
