@@ -1,4 +1,4 @@
-import { DateRange, IDateArray, IndicateDates, StringOrDate } from './types';
+import { DateRange, IDateArray, IndicateDates, StringOrDate, WithEntireDateRange } from './types';
 
 const now = new Date();
 const month = now.getMonth();
@@ -54,21 +54,46 @@ const selectDays: Record<IndicateDates, string> = {
   last1y: '1년',
 };
 
-const dateRange: Record<DateRange, [Date, Date]> = {
-  today: [new Date(year, month, date), new Date(year, month, date)],
-  yesterday: [new Date(year, month, date - 1), new Date(year, month, date - 1)],
-  last7: [new Date(year, month, date - 7), new Date(year, month, date - 1)],
-  last14: [new Date(year, month, date - 14), new Date(year, month, date - 1)],
-  last30: [new Date(year, month, date - 30), new Date(year, month, date - 1)],
-  last90: [new Date(year, month, date - 90), new Date(year, month, date - 1)],
-  thisWeek: [getMonday(new Date()), new Date(year, month, date)],
-  thisMonth: [new Date(year, month, 1), new Date(year, month, date)],
-  thisQuarter: [thisQuarter(month), new Date(year, month, date)],
-  last6m: [new Date(year, month - 6, date), new Date(year, month, date - 1)],
-  last1y: [new Date(year - 1, month, date), new Date(year, month, date - 1)],
+const dateRange = (
+  needEntire?: [Date, Date] | [string, string]
+): Record<DateRange, [Date, Date]> | Record<WithEntireDateRange, [Date, Date]> => {
+  const common = {
+    today: [new Date(year, month, date), new Date(year, month, date)],
+    yesterday: [new Date(year, month, date - 1), new Date(year, month, date - 1)],
+    last7: [new Date(year, month, date - 7), new Date(year, month, date - 1)],
+    last14: [new Date(year, month, date - 14), new Date(year, month, date - 1)],
+    last30: [new Date(year, month, date - 30), new Date(year, month, date - 1)],
+    last90: [new Date(year, month, date - 90), new Date(year, month, date - 1)],
+    thisWeek: [getMonday(new Date()), new Date(year, month, date)],
+    thisMonth: [new Date(year, month, 1), new Date(year, month, date)],
+    thisQuarter: [thisQuarter(month), new Date(year, month, date)],
+    last6m: [new Date(year, month - 6, date), new Date(year, month, date - 1)],
+    last1y: [new Date(year - 1, month, date), new Date(year, month, date - 1)],
+  };
+  if (needEntire) {
+    return {
+      ...common,
+      entire: needEntire.map((ele) => new Date(ele)),
+    };
+  } else {
+    return common;
+  }
 };
 
+const entireRange: IDateArray[] = [
+  { label: '오늘', value: 'today' },
+  { label: '어제', value: 'yesterday' },
+  { label: '지난 7일', value: 'last7' },
+  { label: '지난 30일', value: 'last30' },
+  { label: '지난 90일', value: 'last90' },
+  { label: '이번 주(오늘까지)', value: 'thisWeek' },
+  { label: '이번 달(오늘까지)', value: 'thisMonth' },
+  { label: '이번 분기(오늘까지)', value: 'thisQuarter' },
+  { label: '전체 기간', value: 'entire' },
+];
+
 const date_preset: Record<string, IDateArray[]> = {
+  entire: entireRange,
   date_range: [
     { label: '오늘', value: 'today' },
     { label: '어제', value: 'yesterday' },

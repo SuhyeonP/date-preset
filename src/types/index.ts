@@ -15,13 +15,15 @@ export type IndicateDates = 'last14' | 'last90' | 'last6m' | 'last1y' | 'last30'
 export type DivideType = 'round' | 'ceil' | 'floor';
 export type GapType = 'future' | 'past' | 'today';
 
+export type WithEntireDateRange = 'entire' & DateRange;
+
 export interface ICompareOptionsProps {
   except_time?: boolean;
 }
 
 export interface IDateArray {
   label: string;
-  value: DateRange;
+  value: DateRange | WithEntireDateRange;
 }
 
 export interface IGapOption {
