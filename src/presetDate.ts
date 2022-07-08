@@ -1,11 +1,11 @@
-import { DateRange, IDateArray, IndicateDates } from './types';
+import { DateRange, IDateArray, IndicateDates, StringOrDate } from './types';
 
 const now = new Date();
 const month = now.getMonth();
 const year = now.getFullYear();
 const date = now.getDate();
 
-function getMonday(d: string | Date) {
+function getMonday(d: StringOrDate) {
   const temp: Date = new Date(d);
   const day = temp.getDay();
   const sunday = new Date(temp.setDate(temp.getDate() - day + (day === 0 ? -6 : 1)));
@@ -44,7 +44,8 @@ const thisQuarter = (m: number) => {
 
   return new Date(year, thisQuarterMonth, 1, 0, 0);
 };
-export const selectDays: Record<IndicateDates, string> = {
+
+const selectDays: Record<IndicateDates, string> = {
   last7: '7일',
   last14: '14일',
   last30: '30일',
@@ -53,7 +54,7 @@ export const selectDays: Record<IndicateDates, string> = {
   last1y: '1년',
 };
 
-export const dateRange: Record<DateRange, [Date, Date]> = {
+const dateRange: Record<DateRange, [Date, Date]> = {
   today: [new Date(year, month, date), new Date(year, month, date)],
   yesterday: [new Date(year, month, date - 1), new Date(year, month, date - 1)],
   last7: [new Date(year, month, date - 7), new Date(year, month, date - 1)],
@@ -66,7 +67,8 @@ export const dateRange: Record<DateRange, [Date, Date]> = {
   last6m: [new Date(year, month - 6, date), new Date(year, month, date - 1)],
   last1y: [new Date(year - 1, month, date), new Date(year, month, date - 1)],
 };
-export const date_preset: Record<string, IDateArray[]> = {
+
+const date_preset: Record<string, IDateArray[]> = {
   date_range: [
     { label: '오늘', value: 'today' },
     { label: '어제', value: 'yesterday' },
@@ -79,7 +81,7 @@ export const date_preset: Record<string, IDateArray[]> = {
   ],
 };
 
-export function makeDateTimeInfo(inputDate: string | Date) {
+function makeDateTimeInfo(inputDate: StringOrDate) {
   const copy = new Date(inputDate);
   const [year, month, date, time] = new Intl.DateTimeFormat('ko', {
     day: '2-digit',
@@ -95,3 +97,7 @@ export function makeDateTimeInfo(inputDate: string | Date) {
 
   return `${year}-${month}-${date} ${time}`;
 }
+
+export { selectDays, dateRange, date_preset };
+
+export default makeDateTimeInfo;

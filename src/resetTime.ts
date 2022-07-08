@@ -1,4 +1,4 @@
-export function resetOnlyTime(date: Date | string): Date {
+function resetOnlyTime(date: string): Date {
   const result = new Date(date);
   result.setHours(0);
   result.setMinutes(0);
@@ -6,3 +6,5 @@ export function resetOnlyTime(date: Date | string): Date {
 
   return result;
 }
+
+export default resetOnlyTime;
