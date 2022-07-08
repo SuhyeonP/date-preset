@@ -22,9 +22,9 @@ export function getDateOfGap(origin: number, compare: number, option?: IGapOptio
   const dateGap = calculate[divideType](hourGap / 24);
 
   let gap: GapType = 'today';
-  if (origin - compare > 0 && dateGap !== 0) {
+  if (origin - compare > 0 && hourGap >= 24) {
     gap = 'future';
-  } else if (origin - compare < 0 && dateGap !== 0) {
+  } else if (origin - compare < 0 && hourGap >= 24) {
     gap = 'past';
   }
 
