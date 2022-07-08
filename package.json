@@ -1,6 +1,6 @@
 {
   "name": "date-preset",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "scripts": {
     "build" : "rm -rf ./dist && tsc",
@@ -10,7 +10,7 @@
     "lint:check": "eslint --ext .ts,.tsx . || node scripts/eslint-check-error.js",
     "lint:fix": "eslint --fix --ext .ts,.tsx ."
   },
-  "author": "",
+  "author": "_honey_hyoni",
   "license": "ISC",
   "keywords": ["compare date", "reset time", "korean date range"],
   "description": "",
