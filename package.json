@@ -15,8 +15,6 @@
   "keywords": [],
   "description": "",
   "dependencies": {
-    "commander": "^9.3.0",
-    "pluralize": "^8.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
