@@ -1,4 +1,4 @@
-import { DateRange, IDateArray, IndicateDates, StringOrDate, WithEntireDateRange } from './types';
+import { DateRange, IDateArray, IndicateDates, StringOrDate } from './types';
 
 const now = new Date();
 const month = now.getMonth();
@@ -54,10 +54,10 @@ const selectDays: Record<IndicateDates, string> = {
   last1y: '1년',
 };
 
-const dateRange = (
-  needEntire?: [Date, Date] | [string, string]
-): Record<DateRange, [Date, Date]> | Record<WithEntireDateRange, [Date, Date]> => {
-  const common = {
+const dateRange = (needEntire?: [Date, Date] | [string, string]): Record<Partial<DateRange>, [Date, Date]> => {
+  const entireDate = needEntire ?? [new Date(), new Date()];
+  return {
+    entire: [new Date(entireDate[0]), new Date(entireDate[1])],
     today: [new Date(year, month, date), new Date(year, month, date)],
     yesterday: [new Date(year, month, date - 1), new Date(year, month, date - 1)],
     last7: [new Date(year, month, date - 7), new Date(year, month, date - 1)],
@@ -70,14 +70,6 @@ const dateRange = (
     last6m: [new Date(year, month - 6, date), new Date(year, month, date - 1)],
     last1y: [new Date(year - 1, month, date), new Date(year, month, date - 1)],
   };
-  if (needEntire) {
-    return {
-      ...common,
-      entire: needEntire.map((ele) => new Date(ele)),
-    };
-  } else {
-    return common;
-  }
 };
 
 const entireRange: IDateArray[] = [
