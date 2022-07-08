@@ -1,4 +1,6 @@
-export function resetOnlyTime(date: string): Date {
+import { StringOrDate } from './types';
+
+export function resetOnlyTime(date: StringOrDate): Date {
   const result = new Date(date);
   result.setHours(0);
   result.setMinutes(0);
