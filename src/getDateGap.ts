@@ -12,7 +12,7 @@ const calculate = {
   },
 };
 
-function getDateOfGap(origin: number, compare: number, option?: IGapOption): IGapResult {
+export function getDateOfGap(origin: number, compare: number, option?: IGapOption): IGapResult {
   const divideType = option?.divide ?? 'round';
 
   const timeGap = Math.abs(origin - compare);
@@ -38,5 +38,3 @@ function getDateOfGap(origin: number, compare: number, option?: IGapOption): IGa
     gap,
   };
 }
-
-export default getDateOfGap;

@@ -1,6 +1,6 @@
 import { ICompareOptionsProps } from './types';
 
-function compareDate(origin: Date | string, compare: Date | string, options?: ICompareOptionsProps): boolean {
+export function compareDate(origin: Date | string, compare: Date | string, options?: ICompareOptionsProps): boolean {
   const compare1 = new Date(origin);
   const compare2 = new Date(compare);
 
@@ -21,5 +21,3 @@ function compareDate(origin: Date | string, compare: Date | string, options?: IC
     return compare1.getTime() === compare2.getTime();
   }
 }
-
-export default compareDate;

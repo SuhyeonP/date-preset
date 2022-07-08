@@ -5,7 +5,7 @@ const month = now.getMonth();
 const year = now.getFullYear();
 const date = now.getDate();
 
-function getMonday(d: StringOrDate) {
+export function getMonday(d: StringOrDate) {
   const temp: Date = new Date(d);
   const day = temp.getDay();
   const sunday = new Date(temp.setDate(temp.getDate() - day + (day === 0 ? -6 : 1)));
@@ -81,7 +81,7 @@ const date_preset: Record<string, IDateArray[]> = {
   ],
 };
 
-function makeDateTimeInfo(inputDate: StringOrDate) {
+export function makeDateTimeInfo(inputDate: StringOrDate) {
   const copy = new Date(inputDate);
   const [year, month, date, time] = new Intl.DateTimeFormat('ko', {
     day: '2-digit',
@@ -99,5 +99,3 @@ function makeDateTimeInfo(inputDate: StringOrDate) {
 }
 
 export { selectDays, dateRange, date_preset };
-
-export default makeDateTimeInfo;
