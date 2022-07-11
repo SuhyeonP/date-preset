@@ -5,6 +5,7 @@ const nowTime = Date.now();
 const endTime = end_date.getTime();
 
 const { gap } = getDateGap(endTime, nowTime);
+// (dateGap, hourGap, minuteGap, secondGap) > 0
 
 if (gap === 'past') {
   end_date.setDate(end_date.getDate() + 1);
@@ -16,7 +17,9 @@ if (gap === 'past') {
 }
 ```
 
-# `getDateGap(origin, compare, option)`:
+### `getDateGap(origin, compare, option)`:
 
 - origin, compare : origin | compare Date (you can use type timeStamp(string), Date)
 - option is optional (you can use divide type for `Math.round ` => round)
+
+- you can use `dateGap`, `hourGap`, `minuteGap`, `secondGap`.

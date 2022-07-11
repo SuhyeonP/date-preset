@@ -73,6 +73,7 @@ const dateRange = (needEntire?: [Date, Date] | [string, string]): Record<Partial
 };
 
 const entireRange: IDateArray[] = [
+  { label: '전체 기간', value: 'entire' },
   { label: '오늘', value: 'today' },
   { label: '어제', value: 'yesterday' },
   { label: '지난 7일', value: 'last7' },
@@ -81,7 +82,6 @@ const entireRange: IDateArray[] = [
   { label: '이번 주(오늘까지)', value: 'thisWeek' },
   { label: '이번 달(오늘까지)', value: 'thisMonth' },
   { label: '이번 분기(오늘까지)', value: 'thisQuarter' },
-  { label: '전체 기간', value: 'entire' },
 ];
 
 const date_preset: Record<string, IDateArray[]> = {
