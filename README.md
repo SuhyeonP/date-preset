@@ -23,3 +23,9 @@ if (gap === 'past') {
 - option is optional (you can use divide type for `Math.round ` => round)
 
 - you can use `dateGap`, `hourGap`, `minuteGap`, `secondGap`.
+
+
+### `isSameDate(origin, compare, checkTime)`
+
+- in my lib you cans use date type string | Date
+- return data type is only Boolean! `true` will be same date, `false` will be different.

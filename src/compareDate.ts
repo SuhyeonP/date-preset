@@ -1,4 +1,4 @@
-import { ICompareOptionsProps } from './types';
+import { ICompareOptionsProps, StringOrDate } from './types';
 
 export function compareDate(origin: Date | string, compare: Date | string, options?: ICompareOptionsProps): boolean {
   const compare1 = new Date(origin);
@@ -20,4 +20,17 @@ export function compareDate(origin: Date | string, compare: Date | string, optio
   } else {
     return compare1.getTime() === compare2.getTime();
   }
+}
+
+// true => same, false => different
+export function isSameDate(origin: StringOrDate, compare: StringOrDate, checkTime = false): boolean {
+  const originDate = new Date(origin).getTime();
+  const compareDate = new Date(compare).getTime();
+
+  const sub = Math.abs(originDate - compareDate) / (1000 * 60 * 60);
+
+  if (checkTime) {
+    return originDate !== compareDate;
+  }
+  return sub < 1;
 }
