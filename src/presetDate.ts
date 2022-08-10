@@ -54,6 +54,30 @@ const selectDays: Record<IndicateDates, string> = {
   last1y: '1년',
 };
 
+export function syncDateRange(
+  thisMoment: Date,
+  entireRange?: [Date, Date] | [string, string]
+): Record<Partial<DateRange>, [Date, Date]> {
+  const month = thisMoment.getMonth();
+  const year = thisMoment.getFullYear();
+  const date = thisMoment.getDate();
+  const entireDate = entireRange ?? [new Date(), new Date()];
+  return {
+    entire: [new Date(entireDate[0]), new Date(entireDate[1])],
+    today: [new Date(year, month, date), new Date(year, month, date)],
+    yesterday: [new Date(year, month, date - 1), new Date(year, month, date - 1)],
+    last7: [new Date(year, month, date - 7), new Date(year, month, date - 1)],
+    last14: [new Date(year, month, date - 14), new Date(year, month, date - 1)],
+    last30: [new Date(year, month, date - 30), new Date(year, month, date - 1)],
+    last90: [new Date(year, month, date - 90), new Date(year, month, date - 1)],
+    thisWeek: [getMonday(thisMoment), new Date(year, month, date)],
+    thisMonth: [new Date(year, month, 1), new Date(year, month, date)],
+    thisQuarter: [thisQuarter(month), new Date(year, month, date)],
+    last6m: [new Date(year, month - 6, date), new Date(year, month, date - 1)],
+    last1y: [new Date(year - 1, month, date), new Date(year, month, date - 1)],
+  };
+}
+
 const dateRange = (needEntire?: [Date, Date] | [string, string]): Record<Partial<DateRange>, [Date, Date]> => {
   const entireDate = needEntire ?? [new Date(), new Date()];
   return {
