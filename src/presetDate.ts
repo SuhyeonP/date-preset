@@ -54,10 +54,10 @@ const selectDays: Record<IndicateDates, string> = {
   last1y: '1년',
 };
 
-export function syncDateRange(
+export const syncDateRange = (
   thisMoment: Date,
   entireRange?: [Date, Date] | [string, string]
-): Record<Partial<DateRange>, [Date, Date]> {
+): Record<Partial<DateRange>, [Date, Date]> => {
   const month = thisMoment.getMonth();
   const year = thisMoment.getFullYear();
   const date = thisMoment.getDate();
@@ -76,7 +76,7 @@ export function syncDateRange(
     last6m: [new Date(year, month - 6, date), new Date(year, month, date - 1)],
     last1y: [new Date(year - 1, month, date), new Date(year, month, date - 1)],
   };
-}
+};
 
 const dateRange = (needEntire?: [Date, Date] | [string, string]): Record<Partial<DateRange>, [Date, Date]> => {
   const entireDate = needEntire ?? [new Date(), new Date()];
