@@ -54,7 +54,7 @@ const selectDays: Record<IndicateDates, string> = {
   last1y: '1년',
 };
 
-export const syncDateRange = (
+const syncDateRange = (
   thisMoment: Date,
   entireRange?: [Date, Date] | [string, string]
 ): Record<Partial<DateRange>, [Date, Date]> => {
@@ -139,4 +139,4 @@ export function makeDateTimeInfo(inputDate: StringOrDate) {
   return `${year}-${month}-${date} ${time}`;
 }
 
-export { selectDays, dateRange, date_preset };
+export { selectDays, dateRange, date_preset, syncDateRange };
